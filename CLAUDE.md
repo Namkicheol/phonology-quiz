@@ -23,22 +23,52 @@
 
 ### 1순위 — 항상 먼저 참조 (기출 분석 · 합격자 노트)
 
+**[AEP/EPP 정리]**
+
 | 파일 | 내용 |
 |------|------|
-| `refs/음운론_AEP_EPP_정리/음운론_기출_분석_pdf.md` | 기출 주제별 분류 분석 18장 — 골격 |
+| `refs/음운론_AEP_EPP_정리/음운론_기출_분析_pdf.md` | 기출 주제별 분류 분析 18장 — 골격 |
 | `refs/음운론_AEP_EPP_정리/EPP_정리.md` | EPP 합격자 정리 노트 |
 | `refs/음운론_AEP_EPP_정리/AEP_데일리_밴드_문제.md` | AEP 수업 데일리 문제 (합격자 자료) |
 | `refs/음운론_AEP_EPP_정리/AEP_보충_프린트.md` | AEP 보충 프린트 (합격자 자료) |
 | `refs/음운론_AEP_EPP_정리/멘토영어학_바탕_rule_도출_문제.md` | 멘토영어학 기반 rule 도출 문제 |
+| `refs/음운론_AEP_EPP_정리/멘토영어학_바탕_rule_도출_문제_정답.md` | 위 문제 정답 |
+| `refs/음운론_AEP_EPP_정리/음운론_연습_문제_답.md` | 음운론 연습 문제 답안 |
 
 > 이미지 경로: `refs/음운론_AEP_EPP_정리/images/`
 
-### 2순위 — 기출 해설집 (합격자 저)
+**[히또리 STRESS 문제]** — 단어 주고 강세 표시하는 실전 드릴
+
+| 파일 | 내용 |
+|------|------|
+| `refs/［문제］모든 STRESS 표시하시오 히또리/［문제］모든 STRESS 표시하시오 히또리.md` | 문제 (8p) |
+| `refs/［문제］모든 STRESS 표시하시오 히또리(수정)/［문제］모든 STRESS 표시하시오 히또리(수정).md` | 문제 수정본 (1p) |
+| `refs/［정답］모든 STRESS 표시하시오 히또리/［정답］모든 STRESS 표시하시오 히또리.md` | 정답 (8p) |
+
+**[가루미 합격자 노트]** — 이미지 스캔 OCR; 텍스트 품질 낮을 수 있음 — 이미지 직접 참조 권장
+
+| 파일 | 내용 |
+|------|------|
+| `refs/features_가루미.md` | 변별자질(distinctive features) 파트 |
+| `refs/Phonological Rules_가루미.md` | 음운규칙 파트 |
+| `refs/영어학 짱은 나야!!!_가루미 복사본.md` | 영어학 종합 노트 |
+| `refs/응완벽해질게_가루미.md` | 가루미 노트 |
+| `refs/Phonology & Phonetics 헷갈리는 개념 ex..md` | 음운론·음성학 헷갈리는 개념 예제 정리 |
+
+### 2순위 — 기출 해설집 + 교재
 
 | 파일 | 내용 | 범위 |
 |------|------|------|
 | `refs/루이스기출 5판.md` | 루이스 기출분석 5판 (OCR) — 2002~2021 영어학 기출 해설·분류 | 음운론 파트 |
-| `refs/메가쌤 전공영어 기출분석.md` | 메가쌤 기출분석 (현재 내용 거의 없음 — 추후 추가 가능) | — |
+| `refs/메가쌤 전공영어 기출분析.md` | 메가쌤 기출분析 (현재 내용 거의 없음 — 추후 추가 가능) | — |
+| `refs/최진호_고급/최진호_고급.md` | 최진호 고급 교재 (419p, 이미지) | 음운론 전범위 |
+| `refs/최진호_중급/최진호_중급.md` | 최진호 중급 교재 (318p, 이미지) | 음운론 전범위 |
+| `refs/AEP 단권화(루이스합격자)/AEP 단권화(루이스합격자).md` | AEP 루이스 합격자 단권화 (15p) | 음운론 전범위 |
+| `refs/AEP 보충프린트_앤드류 강의/AEP 보충프린트_앤드류 강의.md` | 앤드류 강의 AEP 보충프린트 (43p) | 음운론 전범위 |
+| `refs/7. 정T_AEP Chap.7 정리/7. 정T_AEP Chap.7 정리.md` | 정T AEP Chap.7 강세 정리 (17p) | 강세 |
+| `refs/5.멘토영어학 rule 도출 문제/5.멘토영어학 rule 도출 문제.md` | 멘토영어학 rule 도출 문제 이미지 원본 (13p) | 음운규칙 |
+| `refs/5.멘토영어학 rule 도출 문제 답/5.멘토영어학 rule 도출 문제 답.md` | 멘토영어학 rule 도출 문제 답 이미지 (2p) | 음운규칙 |
+| `refs/10.영어학 정리 156p/10.영어학 정리 156p.md` | 영어학 종합 정리 (156p) | 전범위 |
 
 ### 3순위 — 개념 깊이 보충 (원서)
 
@@ -47,8 +77,10 @@
 | `refs/aep.md` | Applied English Phonology (Yavaş) — AEP 교재 전체 | **전체** |
 | `refs/ail.md` | An Introduction to Language 10판 | **음성·음운론 파트만** |
 | `refs/윤도형2015.md` | 전공영어학 (윤도형, 2015) | **음성·음운론 파트만** |
+| `refs/English_Phonetics_and_Phonology.md` | English Phonetics and Phonology (Roach) | **음성·음운론 파트만** |
+| `refs/introducing-phonetics-and-phonology-3nbsped-9781444109887-144410988x_compress.md` | Introducing Phonetics and Phonology 3판 | **음성·음운론 파트만** |
 
-> 이미지: `refs/aep_images/`, `refs/ail_images/`, `refs/윤도형2015_images/`
+> 이미지: `refs/aep_images/`, `refs/ail_images/`, `refs/윤도형2015_images/`, `refs/English_Phonetics_and_Phonology_images/`, `refs/introducing-phonetics-and-phonology-3nbsped-9781444109887-144410988x_compress_images/`
 
 ### 4순위 — 기출 문항 DB
 

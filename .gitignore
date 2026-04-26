@@ -5,3 +5,5 @@ docs/
 phonetics, phonology📄 MD+이미지 모음/
 aep_images/
 *.pdf
+refs/
+.claude/

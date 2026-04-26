@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>강세 드릴 Part 1 — 음절 클릭</title>
+<title>강세 드릴 Part 2 — 음절 클릭</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&family=Caveat:wght@600&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
@@ -91,7 +91,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:#f5f4ee;background-image:r
 <body>
 <div class="header-wrap">
   <div class="header-topbar">
-    <span class="header-no">분류 6 <span>—</span> DRILL Part 1</span>
+    <span class="header-no">분류 6 <span>—</span> DRILL Part 2</span>
     <span class="header-label">강세 음절 선택</span>
   </div>
   <h1 class="header-title"><span class="title-hl">강세</span> 드릴</h1>
@@ -121,140 +121,133 @@ body{font-family:'Noto Sans KR',sans-serif;background:#f5f4ee;background-image:r
 <script src="sounds.js"></script>
 <script src="score-popup.js"></script>
 <script>
-const SAVE_KEY='phono_stress_drill_p1';
+const SAVE_KEY='phono_stress_drill_p2';
 const TOTAL=40;
 let cur=0,answers=new Array(TOTAL).fill(null);
 
 // {cat, word, syls[], ans(0-based index), ctx?, ipa, why}const Q=[
-{cat:"2음절 강세",word:"frequent",syls:["fre","quent"],ans:0,ctx:"",
- ipa:"/ˈfriːkwənt/",why:"2음절 형용사 → 첫 음절 강세."},
+{cat:"복합어 강세",word:"greenhouse",syls:["green","house"],ans:0,ctx:"",
+ ipa:"/ˈɡriːnhaʊs/",why:"복합어 → 첫 요소에 주강세."},
 
-{cat:"2음절 강세",word:"active",syls:["ac","tive"],ans:0,ctx:"",
- ipa:"/ˈæktɪv/",why:"2음절 형용사 → 첫 음절 강세."},
+{cat:"복합어 강세",word:"blackbird",syls:["black","bird"],ans:0,ctx:"",
+ ipa:"/ˈblækbɜːrd/",why:"복합어 → 첫 요소에 주강세."},
 
-{cat:"2음절 강세",word:"solid",syls:["sol","id"],ans:0,ctx:"",
- ipa:"/ˈsɒlɪd/",why:"2음절 형용사 → 첫 음절 강세."},
+{cat:"복합어 강세",word:"birthday",syls:["birth","day"],ans:0,ctx:"",
+ ipa:"/ˈbɜːrθdeɪ/",why:"복합어 → 첫 요소에 주강세."},
 
-{cat:"2음절 강세",word:"absent",syls:["ab","sent"],ans:0,ctx:"(Adj)",
- ipa:"/ˈæbsənt/",why:"2음절 형용사 → 첫 음절 강세."},
+/* ── 2음절 강세(첫음절) — trochaic ── */
+{cat:"2음절 강세(첫음절)",word:"agent",syls:["a","gent"],ans:0,ctx:"",
+ ipa:"/ˈeɪdʒənt/",why:"첫음절 강세. 영어 기본 trochaic 패턴."},
 
-{cat:"2음절 강세",word:"complex",syls:["com","plex"],ans:0,ctx:"(N/Adj)",
- ipa:"/ˈkɒmpleks/",why:"명사/형용사 → 첫 음절 강세."},
+{cat:"2음절 강세(첫음절)",word:"country",syls:["coun","try"],ans:0,ctx:"",
+ ipa:"/ˈkʌntri/",why:"첫음절 강세. 영어 기본 trochaic 패턴."},
 
-/* ── N/V 강세 쌍 ── */
-{cat:"N/V 강세 쌍",word:"export",syls:["ex","port"],ans:0,ctx:"(N)",
- ipa:"/ˈekspɔːrt/",why:"명사 → 첫 음절 강세. (V: exˈport)"},
+{cat:"2음절 강세(첫음절)",word:"empire",syls:["em","pire"],ans:0,ctx:"",
+ ipa:"/ˈempaɪər/",why:"첫음절 강세. 영어 기본 trochaic 패턴."},
 
-{cat:"N/V 강세 쌍",word:"export",syls:["ex","port"],ans:1,ctx:"(V)",
- ipa:"/ɪkˈspɔːrt/",why:"동사 → 둘째 음절 강세. (N: ˈexport)"},
+{cat:"2음절 강세(첫음절)",word:"husband",syls:["hus","band"],ans:0,ctx:"",
+ ipa:"/ˈhʌzbənd/",why:"첫음절 강세. 영어 기본 trochaic 패턴."},
 
-{cat:"N/V 강세 쌍",word:"import",syls:["im","port"],ans:0,ctx:"(N)",
- ipa:"/ˈɪmpɔːrt/",why:"명사 → 첫 음절 강세. (V: imˈport)"},
+{cat:"2음절 강세(첫음절)",word:"proper",syls:["prop","er"],ans:0,ctx:"",
+ ipa:"/ˈprɒpər/",why:"첫음절 강세. 영어 기본 trochaic 패턴."},
 
-{cat:"N/V 강세 쌍",word:"import",syls:["im","port"],ans:1,ctx:"(V)",
- ipa:"/ɪmˈpɔːrt/",why:"동사 → 둘째 음절 강세. (N: ˈimport)"},
+{cat:"2음절 강세(첫음절)",word:"perfect",syls:["per","fect"],ans:0,ctx:"(Adj/N)",
+ ipa:"/ˈpɜːrfɪkt/",why:"첫음절 강세. 영어 기본 trochaic 패턴."},
 
-{cat:"N/V 강세 쌍",word:"increase",syls:["in","crease"],ans:0,ctx:"(N)",
- ipa:"/ˈɪŋkriːs/",why:"명사 → 첫 음절 강세. (V: inˈcrease)"},
+{cat:"2음절 강세(첫음절)",word:"ready",syls:["read","y"],ans:0,ctx:"",
+ ipa:"/ˈredi/",why:"첫음절 강세. 영어 기본 trochaic 패턴."},
 
-{cat:"N/V 강세 쌍",word:"increase",syls:["in","crease"],ans:1,ctx:"(V)",
- ipa:"/ɪnˈkriːs/",why:"동사 → 둘째 음절 강세. (N: ˈincrease)"},
+{cat:"2음절 강세(첫음절)",word:"sudden",syls:["sud","den"],ans:0,ctx:"",
+ ipa:"/ˈsʌdən/",why:"첫음절 강세. 영어 기본 trochaic 패턴."},
 
-{cat:"N/V 강세 쌍",word:"conflict",syls:["con","flict"],ans:0,ctx:"(N)",
- ipa:"/ˈkɒnflɪkt/",why:"명사 → 첫 음절 강세. (V: conˈflict)"},
+{cat:"2음절 강세(첫음절)",word:"yellow",syls:["yel","low"],ans:0,ctx:"",
+ ipa:"/ˈjeloʊ/",why:"첫음절 강세. 영어 기본 trochaic 패턴."},
 
-{cat:"N/V 강세 쌍",word:"conflict",syls:["con","flict"],ans:1,ctx:"(V)",
- ipa:"/kənˈflɪkt/",why:"동사 → 둘째 음절 강세. (N: ˈconflict)"},
+{cat:"2음절 강세(첫음절)",word:"vulgar",syls:["vul","gar"],ans:0,ctx:"",
+ ipa:"/ˈvʌlɡər/",why:"첫음절 강세. 영어 기본 trochaic 패턴."},
 
-/* ── 3음절 — antepenult (penult light) ── */
-{cat:"3음절 강세",word:"cinema",syls:["cin","e","ma"],ans:0,ctx:"",
- ipa:"/ˈsɪnɪmə/",why:"Penult -e- = light(CV) → antepenult -cin- 강세."},
+/* ── 2음절 강세(둘째음절) — iambic ── */
+{cat:"2음절 강세(둘째음절)",word:"appeal",syls:["ap","peal"],ans:1,ctx:"",
+ ipa:"/əˈpiːl/",why:"둘째음절 강세. penult -peal- heavy(장모음) → iambic 패턴."},
 
-{cat:"3음절 강세",word:"origin",syls:["or","i","gin"],ans:0,ctx:"",
- ipa:"/ˈɒrɪdʒɪn/",why:"Penult -i- = light → antepenult -or- 강세."},
+{cat:"2음절 강세(둘째음절)",word:"balloon",syls:["bal","loon"],ans:1,ctx:"",
+ ipa:"/bəˈluːn/",why:"둘째음절 강세. penult -loon- heavy(장모음) → iambic 패턴."},
 
-{cat:"3음절 강세",word:"popular",syls:["pop","u","lar"],ans:0,ctx:"",
- ipa:"/ˈpɒpjʊlər/",why:"Penult -u- = light → antepenult -pop- 강세."},
+{cat:"지명",word:"Brazil",syls:["Bra","zil"],ans:1,ctx:"",
+ ipa:"/brəˈzɪl/",why:"둘째음절 강세. penult -zil- heavy(단모음+coda /l/) → iambic 패턴."},
 
-{cat:"3음절 강세",word:"victory",syls:["vic","to","ry"],ans:0,ctx:"",
- ipa:"/ˈvɪktəri/",why:"Penult -to- = light → antepenult -vic- 강세."},
+{cat:"2음절 강세(둘째음절)",word:"canal",syls:["ca","nal"],ans:1,ctx:"",
+ ipa:"/kəˈnæl/",why:"둘째음절 강세. penult -nal- heavy(단모음+coda /l/) → iambic 패턴."},
 
-{cat:"3음절 강세",word:"family",syls:["fam","i","ly"],ans:0,ctx:"",
- ipa:"/ˈfæmɪli/",why:"Penult -i- = light → antepenult -fam- 강세."},
+{cat:"2음절 강세(둘째음절)",word:"giraffe",syls:["gi","raffe"],ans:1,ctx:"",
+ ipa:"/dʒɪˈrɑːf/",why:"둘째음절 강세. penult -raffe- heavy(장모음) → iambic 패턴."},
 
-/* ── 3음절 — penult heavy ── */
-{cat:"3음절 강세",word:"agenda",syls:["a","gen","da"],ans:1,ctx:"",
- ipa:"/əˈdʒendə/",why:"Penult -gen- = heavy(단모음+coda /n/) → penult 강세."},
+{cat:"지명",word:"Japan",syls:["Ja","pan"],ans:1,ctx:"",
+ ipa:"/dʒəˈpæn/",why:"둘째음절 강세. penult -pan- heavy(단모음+coda /n/) → iambic 패턴."},
 
-{cat:"3음절 강세",word:"diploma",syls:["di","plo","ma"],ans:1,ctx:"",
- ipa:"/dɪˈploʊmə/",why:"Penult -plo- = heavy(장모음 /oʊ/) → penult 강세."},
+{cat:"지명",word:"Tibet",syls:["Ti","bet"],ans:1,ctx:"",
+ ipa:"/tɪˈbet/",why:"둘째음절 강세. penult -bet- heavy(단모음+coda /t/) → iambic 패턴."},
 
-{cat:"3음절 강세",word:"Alaska",syls:["A","las","ka"],ans:1,ctx:"",
- ipa:"/əˈlæskə/",why:"Penult -las- = heavy(단모음+coda /s/) → penult 강세."},
+{cat:"2음절 강세(둘째음절)",word:"machine",syls:["ma","chine"],ans:1,ctx:"",
+ ipa:"/məˈʃiːn/",why:"둘째음절 강세. penult -chine- heavy(장모음) → iambic 패턴."},
 
-{cat:"3음절 강세",word:"Nevada",syls:["Ne","va","da"],ans:1,ctx:"",
- ipa:"/nɪˈvædə/",why:"Penult -va- = heavy(장모음 /æ/) → penult 강세."},
+{cat:"2음절 강세(둘째음절)",word:"parade",syls:["pa","rade"],ans:1,ctx:"",
+ ipa:"/pəˈreɪd/",why:"둘째음절 강세. penult -rade- heavy(장모음) → iambic 패턴."},
 
-{cat:"3음절 강세",word:"Atlanta",syls:["At","lan","ta"],ans:1,ctx:"",
- ipa:"/ətˈlæntə/",why:"Penult -lan- = heavy(단모음+coda /n/) → penult 강세."},
+{cat:"2음절 강세(둘째음절)",word:"correct",syls:["cor","rect"],ans:1,ctx:"",
+ ipa:"/kəˈrekt/",why:"둘째음절 강세. penult -rect- heavy(단모음+coda /kt/) → iambic 패턴."},
 
-/* ── -tion 강세 ── */
-{cat:"-tion 강세",word:"solution",syls:["so","lu","tion"],ans:1,ctx:"",
- ipa:"/səˈluːʃən/",why:"-tion 직전 음절에 강세. -lu- = heavy(장모음)."},
+{cat:"2음절 강세(둘째음절)",word:"intense",syls:["in","tense"],ans:1,ctx:"",
+ ipa:"/ɪnˈtens/",why:"둘째음절 강세. penult -tense- heavy(단모음+coda /ns/) → iambic 패턴."},
 
-{cat:"-tion 강세",word:"narration",syls:["nar","ra","tion"],ans:1,ctx:"",
- ipa:"/næˈreɪʃən/",why:"-tion 직전 음절에 강세. -ra- = heavy(장모음)."},
+{cat:"2음절 강세(둘째음절)",word:"typhoon",syls:["ty","phoon"],ans:1,ctx:"",
+ ipa:"/taɪˈfuːn/",why:"둘째음절 강세. penult -phoon- heavy(장모음) → iambic 패턴."},
 
-{cat:"-tion 강세",word:"education",syls:["ed","u","ca","tion"],ans:2,ctx:"",
- ipa:"/ˌedʒʊˈkeɪʃən/",why:"-tion 직전 음절(-ca-)에 강세."},
+{cat:"2음절 강세(둘째음절)",word:"shampoo",syls:["sham","poo"],ans:1,ctx:"",
+ ipa:"/ʃæmˈpuː/",why:"둘째음절 강세. penult -poo- heavy(장모음) → iambic 패턴."},
 
-{cat:"-tion 강세",word:"observation",syls:["ob","ser","va","tion"],ans:2,ctx:"",
- ipa:"/ˌɒbzəˈveɪʃən/",why:"-tion 직전 음절(-va-)에 강세."},
+{cat:"2음절 강세(둘째음절)",word:"mundane",syls:["mun","dane"],ans:1,ctx:"",
+ ipa:"/mʌnˈdeɪn/",why:"둘째음절 강세. penult -dane- heavy(장모음) → iambic 패턴."},
 
-/* ── -ic 강세 ── */
-{cat:"-ic 강세",word:"elastic",syls:["e","las","tic"],ans:1,ctx:"",
- ipa:"/ɪˈlæstɪk/",why:"-ic 직전 음절(-las-)에 강세. -las- = heavy."},
+/* ── 3음절 강세 ── */
+{cat:"3음절 강세",word:"horizon",syls:["ho","ri","zon"],ans:1,ctx:"",
+ ipa:"/həˈraɪzən/",why:"Penult -ri- = heavy(장모음 /aɪ/) → penult -ri- 강세."},
 
-{cat:"-ic 강세",word:"dramatic",syls:["dra","mat","ic"],ans:1,ctx:"",
- ipa:"/drəˈmætɪk/",why:"-ic 직전 음절(-mat-)에 강세."},
+{cat:"3음절 강세",word:"computer",syls:["com","pu","ter"],ans:1,ctx:"",
+ ipa:"/kəmˈpjuːtər/",why:"Penult -pu- = heavy(장모음 /juː/) → penult 강세."},
 
-{cat:"-ic 강세",word:"academic",syls:["ac","a","dem","ic"],ans:2,ctx:"",
- ipa:"/ˌækəˈdemɪk/",why:"-ic 직전 음절(-dem-)에 강세."},
+{cat:"3음절 강세",word:"bonanza",syls:["bo","nan","za"],ans:1,ctx:"",
+ ipa:"/bəˈnænzə/",why:"Penult -nan- = heavy(단모음+coda /nz/) → penult 강세."},
 
-{cat:"-ic 예외",word:"rhetoric",syls:["rhet","o","ric"],ans:0,ctx:"",
- ipa:"/ˈretərɪk/",why:"-ic 예외어: ˈrhetoric, ˈarabic, ˈcatholic 등 antepenult 강세 유지."},
+{cat:"3음절 강세",word:"abdomen",syls:["ab","do","men"],ans:0,ctx:"",
+ ipa:"/ˈæbdəmən/",why:"Penult -do- = light(CV, 약화) → antepenult -ab- 강세."},
 
-/* ── -ity 강세 ── */
-{cat:"-ity 강세",word:"ability",syls:["a","bil","i","ty"],ans:1,ctx:"",
- ipa:"/əˈbɪlɪti/",why:"-ity 직전 음절(-bil-)에 강세."},
+{cat:"3음절 강세",word:"algebra",syls:["al","ge","bra"],ans:0,ctx:"",
+ ipa:"/ˈældʒɪbrə/",why:"Penult -ge- = light → antepenult -al- 강세."},
 
-{cat:"-ity 강세",word:"reality",syls:["re","al","i","ty"],ans:1,ctx:"",
- ipa:"/riˈælɪti/",why:"-ity 직전 음절(-al-)에 강세."},
+{cat:"3음절 강세",word:"animal",syls:["an","i","mal"],ans:0,ctx:"",
+ ipa:"/ˈænɪməl/",why:"Penult -i- = light → antepenult -an- 강세."},
 
-{cat:"-ity 강세",word:"electricity",syls:["e","lec","tric","i","ty"],ans:2,ctx:"",
- ipa:"/ɪˌlekˈtrɪsɪti/",why:"-ic+ity: -ic rule → -tric-에 먼저 강세. 결과: e-lec-ˈtric-i-ty."},
+{cat:"3음절 강세",word:"buffalo",syls:["buf","fa","lo"],ans:0,ctx:"",
+ ipa:"/ˈbʌfəloʊ/",why:"Penult -fa- = light → antepenult -buf- 강세."},
 
-/* ── 4음절 ── */
-{cat:"4음절 강세",word:"economy",syls:["e","con","o","my"],ans:1,ctx:"",
- ipa:"/ɪˈkɒnəmi/",why:"Penult -o- = light → antepenult -con- 강세. /ɪˈkɒnəmi/"},
+{cat:"3음절 강세",word:"vitamin",syls:["vi","ta","min"],ans:0,ctx:"",
+ ipa:"/ˈvaɪtəmɪn/",why:"Penult -ta- = light(약화) → antepenult -vi- 강세."},
 
-{cat:"4음절 강세",word:"democracy",syls:["de","moc","ra","cy"],ans:1,ctx:"",
- ipa:"/dɪˈmɒkrəsi/",why:"Penult -ra- = light → antepenult -moc- 강세."},
+{cat:"3음절 강세",word:"accident",syls:["ac","ci","dent"],ans:0,ctx:"",
+ ipa:"/ˈæksɪdənt/",why:"Penult -ci- = light → antepenult -ac- 강세."},
 
-{cat:"4음절 강세",word:"geography",syls:["ge","og","ra","phy"],ans:1,ctx:"",
- ipa:"/dʒiˈɒgrəfi/",why:"Penult -ra- = light → antepenult -og- 강세."},
+{cat:"3음절 강세",word:"policy",syls:["pol","i","cy"],ans:0,ctx:"",
+ ipa:"/ˈpɒlɪsi/",why:"Penult -i- = light → antepenult -pol- 강세."},
 
-/* ── Neutral suffix ── */
-{cat:"Neutral Suffix",word:"awareness",syls:["a","ware","ness"],ans:1,ctx:"",
- ipa:"/əˈweənəs/",why:"-ness는 neutral suffix → 어기 aˈware 강세 유지."},
+{cat:"지명",word:"Seattle",syls:["Se","at","tle"],ans:1,ctx:"",
+ ipa:"/siˈætəl/",why:"Penult -at- = heavy(단모음+coda /t/) → penult 강세."},
 
-{cat:"Neutral Suffix",word:"happiness",syls:["hap","pi","ness"],ans:0,ctx:"",
- ipa:"/ˈhæpɪnəs/",why:"-ness는 neutral suffix → 어기 ˈhappy 강세 유지."},
+{cat:"지명",word:"Morocco",syls:["Mo","roc","co"],ans:1,ctx:"",
+ ipa:"/məˈrɒkoʊ/",why:"Penult -roc- = heavy(단모음+coda /k/) → penult 강세."},
 
-{cat:"Neutral Suffix",word:"achievement",syls:["a","chieve","ment"],ans:1,ctx:"",
- ipa:"/əˈtʃiːvmənt/",why:"-ment는 neutral suffix → 어기 aˈchieve 강세 유지."},
-
-/* ── 복합어 ── */
+{cat:"지명",word:"Montana",syls:["Mon","ta","na"],ans:1,ctx:"",
+ ipa:"/mɒnˈtænə/",why:"Penult -ta- = heavy(장모음 /æ/) → penult 강세."}
 ];
 function getScore(){return answers.filter(a=>a&&a.correct).length;}
 
