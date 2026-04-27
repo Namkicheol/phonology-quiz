@@ -158,14 +158,14 @@
   - **단원당 1편**: study + OX + 응용 모두 한 글에 통합 (기본)
   - **개념편 + 응용 풀이편 분리**: stress·rule 도출·IPA 전사 응용이 많은 단원은 별도 응용 풀이 글 작성 가능 (예: "강세 규칙 시리즈")
 
-**iframe / 링크 배치**
-- 본문 중반: `*_study.html` **iframe 임베드** — 개념 학습 흐름
-- 본문 후반: OX·응용 페이지는 **이미 발행된 `obangti.tistory.com` 별도 글로 링크 버튼** 처리 (iframe 중복 X)
-- 개념정리 iframe URL: `https://namkicheol.github.io/phonetics-phonology/<filename>_study.html`
-- OX·응용 링크 버튼 템플릿:
+**iframe / 링크 배치 — iframe 미사용 원칙**
+- ❌ **개념정리(`*_study.html`) iframe 임베드 금지** — 4섹션 본문에 이미 개념·rule·IPA를 풀어 썼으므로 중복
+- ❌ **OX·응용(`*.html`, `stress_practice.html` 등) iframe 임베드 금지** — 이미 별도 obangti.tistory.com 글로 발행됨
+- ✅ **본문 끝에 OX·응용 링크 버튼**만 추가 — `obangti.tistory.com/<post-id>` 형식
+- 링크 버튼 템플릿:
   ```html
   <p align="center">
-  <a href="https://obangti.tistory.com/<post-id>" target="_blank" style="display:inline-block;padding:14px 28px;background:#3182ce;color:#fff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:15px;">📝 OX·응용 풀러 가기 →</a>
+  <a href="https://obangti.tistory.com/<post-id>" target="_blank" style="display:inline-block;padding:14px 28px;background:#3182ce;color:#fff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:15px;">📝 [단원명] OX·응용 풀러 가기 →</a>
   </p>
   ```
 
