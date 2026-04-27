@@ -5,6 +5,44 @@
 
 ---
 
+## 🔗 testmaster(giulmmaster) 연동 — concept_link 자동 적용 (필수)
+
+이 레포의 `_study.html` 챕터를 만들거나 변경하면, testmaster의 기출 데이터가 자동으로 그 챕터를 "💎 합격자 노트에서 더 자세히" 링크로 가리키도록 매핑표를 갱신해야 한다.
+
+**이 레포명 (concept_anchors.json key): `phonetics-phonology`**
+
+### 새 챕터 만들 때 절차
+
+1. `_study.html` 안 각 섹션에 `id="..."` anchor 부여 (지금처럼 `s1`, `s2`도 OK, 의미 있는 이름이면 더 좋음)
+2. testmaster의 `data/concept_anchors.json` 갱신 — 해당 챕터의 anchor·title·terms 추가:
+   ```json
+   "phonetics-phonology": {
+     "<chapter>_study.html": [
+       { "anchor": "s1", "title": "음절 무게", "terms": ["Syllable Weight", "mora", "..."] }
+     ]
+   }
+   ```
+3. testmaster에서 자동 적용 + 검증 실행:
+   ```bash
+   cd ~/Library/CloudStorage/OneDrive-학장중학교/giulmmaster
+   python3 scripts/wire_concept_links.py
+   ```
+4. 출력에서 `깨진링크: 0건` 확인. 깨졌으면 anchor 이름 수정.
+
+### 트리거 (Claude 자동 실행)
+
+다음 상황에서 별도 지시 없이 위 절차를 실행한다:
+- 새 `_study.html` 챕터 생성/완성 직후
+- 기존 `_study.html`에 섹션 추가/제거/anchor 변경 시
+- 사용자가 "기출 연동", "concept_link", "testmaster 적용", "wire" 등 언급 시
+
+### testmaster 위치
+
+`/Users/namgicheol/Library/CloudStorage/OneDrive-학장중학교/giulmmaster/`  
+규칙 원본: 위 디렉토리의 `CLAUDE.md` "concept_link 자동 적용" 섹션
+
+---
+
 ## 콘텐츠 뼈대 — 기출 분석 분류 구조
 
 > 모든 페이지 제작은 아래 분류를 기준으로 삼는다.
