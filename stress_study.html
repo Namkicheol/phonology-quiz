@@ -1388,6 +1388,38 @@ function openSec(id){
   el.scrollIntoView({behavior:'smooth',block:'start'});
 }
 document.getElementById('s1').classList.add('open');
+
+/* deeplink #s5 등으로 진입했을 때 해당 섹션 자동 펼침 + 정확 스크롤 */
+(function(){
+  if (!location.hash) return;
+  var id = location.hash.slice(1);
+  var el = document.getElementById(id);
+  if (!el) return;
+  if (el.classList.contains('sec')) el.classList.add('open');
+  /* 페이지 안정화 후 스크롤 — closed 섹션 height=0 → 펼친 후 높이 잡혀야 함 */
+  requestAnimationFrame(function(){
+    requestAnimationFrame(function(){
+      el.scrollIntoView({block:'start'});
+    });
+  });
+})();
+</script>
+
+<!-- 기출 돌아가기 — testmaster concept.html에서 ?return=<ID>로 진입 시 노출 -->
+<style>
+#testmaster-return-btn{display:none;position:fixed;bottom:20px;right:20px;padding:11px 18px;background:#1a5276;color:#fff;border-radius:8px;text-decoration:none;font-weight:700;z-index:9999;box-shadow:0 4px 16px rgba(26,82,118,.35);font-family:'Noto Sans KR',sans-serif;font-size:13px;transition:opacity .15s}
+#testmaster-return-btn:hover{opacity:.85}
+</style>
+<a id="testmaster-return-btn" href="#"></a>
+<script>
+(function(){
+  var rid = new URLSearchParams(location.search).get('return');
+  if (!rid) return;
+  var btn = document.getElementById('testmaster-return-btn');
+  btn.href = 'https://namkicheol.github.io/testmaster/index.html?id=' + encodeURIComponent(rid);
+  btn.textContent = '← ' + rid + ' 로 돌아가기';
+  btn.style.display = 'block';
+})();
 </script>
 </body>
 </html>
